@@ -30,24 +30,6 @@ namespace IPLocation.API.Controllers {
          } catch (Exception ex) {
             return BadRequest(ex.Message);
          }
-
-         ////Json(this.locationService.GetLocationByIp(ip));
-
-         //var ipAddress = HttpContext.Connection.RemoteIpAddress;
-
-         //string ip = string.Empty;
-         //var rescd = ipAddress.ToString();
-
-         //if(!(ipAddress.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)) {
-         //   ip = ipAddress.ToString();
-         //}
-
-
-         //try {
-         //   return new JsonResult(this.locationService.GetLocationByIp(ip));
-         //} catch (Exception ex) {
-         //   return BadRequest(ex.Message);
-         //}
       }
    }
 }

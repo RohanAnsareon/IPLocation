@@ -3,6 +3,7 @@ using IPLocation.API.LocationService.Abstractions;
 using IPLocation.Data.Models;
 using Microsoft.Extensions.Configuration;
 using Refit;
+using Serilog;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -38,7 +39,6 @@ namespace IPLocation.API.LocationService {
                   } else if (task.IsFaulted) {
                      throw new Exception($"Can't get {ip} Location info", task.Exception);
                   }
-
                }
                return location;
             } else {
@@ -52,7 +52,8 @@ namespace IPLocation.API.LocationService {
                return location;
             }
          } catch (Exception ex) {
-            throw new NotImplementedException();
+            Log.Error(ex.ToString());
+            throw;
          }
       }
    }
