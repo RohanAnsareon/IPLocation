@@ -5,6 +5,8 @@ using System.Text;
 
 namespace IPLocation.Data.Models {
    public class LocationDbContext : DbContext {
+      public LocationDbContext(DbContextOptions<LocationDbContext> options) : base(options) { }
+
       public DbSet<Location> Locations { get; set; }
 
       protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {

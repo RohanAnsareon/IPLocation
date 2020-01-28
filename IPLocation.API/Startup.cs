@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using IPLocation.API.LocationService.Abstractions;
 using IPLocation.Data.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -23,7 +24,9 @@ namespace IPLocation.API {
 
       // This method gets called by the runtime. Use this method to add services to the container.
       public void ConfigureServices(IServiceCollection services) {
-         services.AddDbContext<LocationDbContext>(options => options.UseSqlServer(Configuration["IPLocation:LocationDbConnectionString"]));
+         services.AddDbContext<LocationDbContext>(options => options.UseNpgsql(Configuration["IPLocation:LocationDbConnectionString"]));
+         services.AddTransient<ILocationService, LocationService.LocationService>();
+         services.AddSingleton(Configuration);
          services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
       }
 
